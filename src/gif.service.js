@@ -89,6 +89,7 @@ async function inspectGif(inputPath) {
   const width = Number(stream.width);
   const height = Number(stream.height);
   const frameCount = Number(stream.nb_frames);
+  const metadataPages = Number(metadata.pages || 1);
   const duration = Number(info.format && info.format.duration);
 
   if (
@@ -99,7 +100,7 @@ async function inspectGif(inputPath) {
     throw new Error("GIF dimensions must not exceed 1500x1500");
   }
 
-  if (Number.isFinite(frameCount) && frameCount > MAX_FRAMES) {
+  if ((Number.isFinite(frameCount) && frameCount > MAX_FRAMES) || metadataPages > MAX_FRAMES) {
     throw new Error("GIF cannot contain more than " + MAX_FRAMES + " frames");
   }
 
