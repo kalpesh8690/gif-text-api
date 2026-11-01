@@ -1,0 +1,6 @@
+node_modules
+.git
+.env
+*.gif
+*.png
+npm-debug.log*
